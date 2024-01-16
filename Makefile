@@ -15,6 +15,9 @@ mips64:
 riscv:
 
 nasm:
+	nasm -gdwarf -f elf64 x64.nasm.asm -o x64.nasm.asm.o
+	x86_64-linux-gnu-ld x64.nasm.asm.o -o x64.nasm
+	qemu-x86_64 x64.nasm
 
 yasm:
 
