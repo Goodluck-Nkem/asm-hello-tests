@@ -1,5 +1,3 @@
-# All binaries will be runnable on Linux
-
 none:
 	@echo "Must choose an option!"
 
@@ -29,10 +27,14 @@ arm:
 
 aarch64:
 
-uasm64:
+jwasm64:
+	qemu-i386 ~/JWasm/jwasm -win64 Win64_hello.asm
+	qemu-i386 ~/JWasm/jwasm -win64 Win64_console_msgbox.asm
+	qemu-i386 ~/JWlink/jwlink format win pe ru win file Win64_hello op start=CustomEntry
+	qemu-i386 ~/JWlink/jwlink format win pe ru win file Win64_console_msgbox op start=CustomEntry
 
-uasm32:
+jwasm32:
 
 clean:
-	rm $(wildcard *.prog)
+	rm  $(wildcard *.exe) $(wildcard *.prog)
 
