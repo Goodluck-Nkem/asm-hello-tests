@@ -8,33 +8,33 @@ mips.gcc:
 mips.spim:
 	spim -f mips.spim.asm
 
-mips64:
+mips64.gcc:
 
-riscv:
+riscv.gcc:
 
-nasm:
+x64.nasm:
 	nasm -gdwarf -f elf64 x64.nasm.asm -o x64.nasm.asm.o
-	x86_64-linux-gnu-ld x64.nasm.asm.o -o x64.nasm
-	qemu-x86_64 x64.nasm
+	x86_64-linux-gnu-ld x64.nasm.asm.o -o x64.nasm.prog
+	qemu-x86_64 x64.nasm.prog
 
-yasm:
+x64.yasm:
 
-x64:
+x64.gcc:
 
-x86:
+x86.gcc:
 
-arm:
+arm.gcc:
 
-aarch64:
+aarch64.gcc:
 
-jwasm64:
+x64.jwasm:
 	qemu-i386 ~/JWasm/jwasm -win64 Win64_hello.asm
 	qemu-i386 ~/JWasm/jwasm -win64 Win64_console_msgbox.asm
 	qemu-i386 ~/JWlink/jwlink format win pe ru win file Win64_hello op start=CustomEntry
 	qemu-i386 ~/JWlink/jwlink format win pe ru win file Win64_console_msgbox op start=CustomEntry
 
-jwasm32:
+x86.jwasm:
 
 clean:
-	rm  $(wildcard *.exe) $(wildcard *.prog)
+	rm -f $(wildcard *.exe) $(wildcard *.prog) $(wildcard *.o)
 
