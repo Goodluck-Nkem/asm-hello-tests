@@ -26,6 +26,8 @@ x86.gcc:
 arm.gcc:
 
 aarch64.gcc:
+	aarch64-linux-gnu-gcc-13 -g -fpic aarch64.s -o aarch64.prog
+	qemu-aarch64 aarch64.prog
 
 x64.jwasm:
 	qemu-i386 ~/JWasm/jwasm -win64 Win64_hello.asm
