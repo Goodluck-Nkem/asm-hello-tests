@@ -1,6 +1,13 @@
+/* ABOUT:
+Make a system call (Write to a FD)
+Load a data address correctly
+Test load, multiply and divide.
+*/
+
 .global	main
 
 .equ STDOUT, 1
+.equ SYS_WRITE 0x40
 
 .bss
 .p2align	3
@@ -10,7 +17,13 @@ year: .zero 8               	 // 0x0
 	
 .text
 
-// x9-x15 as scratch
+/* Calling Convention */
+// x0-x7 for integer and pointer arguments
+// x0 for return value
+// lr for return address, must push for non-leaf functions
+// x8 for syscall number
+// x9-x15 for scratch
+//
 
 .section .rodata.message
 message: .asciz "Hello on AArch64!\n"
@@ -24,7 +37,7 @@ main:
 	add	fp, sp, #0				// fp = sp
 
 	/* syscall write(fd, buf, sz) */
-	movz x8, 0x40				// sys number for write
+	movz x8, SYS_WRITE			// syscall number for write
 	movz x0, STDOUT				// (fd)
 	adr x1, message				// (buf) load address (+/- 4GB)
 	movz x2, SZ_message			// (sz)
