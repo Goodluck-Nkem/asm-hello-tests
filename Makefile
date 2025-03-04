@@ -21,6 +21,10 @@ x64.yasm:
 
 x64.gcc:
 
+x86.nasm:
+	nasm -gdwarf -f elf32 x86-nasm.asm -o x86-nasm.asm.o
+	i686-linux-gnu-ld x86-nasm.asm.o -o x86-nasm.prog
+	qemu-i386 x86-nasm.prog
 x86.gcc:
 
 arm.gcc:

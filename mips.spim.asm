@@ -1,5 +1,6 @@
 .data
-    MESSAGE: .asciiz "Running MIPS code, built by SPIM ...\n"
+    MESSAGE: .ascii "\n*********''''''''''''***********"
+			 .asciiz "\nRunning MIPS code, built by SPIM ...\n"
     
 .text
 main:
